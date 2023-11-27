@@ -39,11 +39,17 @@ class ArtistaModel{
 
    
 
-    public function insertArtista ($nombreArtista,$nacionalidad,$edad){
-        $query = $this->db->prepare('INSERT INTO artista(nombreArtista, nacionalidad, edad) VALUES (?,?,?)');
-        $query->execute([$nombreArtista,$nacionalidad,$edad]);
+    public function insertArtista ($id,$nombreArtista,$nacionalidad,$edad){
+        $query = $this->db->prepare('INSERT INTO artista(idArtista,nombreArtista, nacionalidad, edad) VALUES (?,?,?,?)');
+        $query->execute([$id,$nombreArtista,$nacionalidad,$edad]);
         return $this-> db-> lastInsertId();
     }
+
+    function delete($id) {
+        $query = $this->db->prepare('DELETE FROM artista WHERE idArtista = ?');
+        $query->execute([$id]);
+    }
+
 
 
 

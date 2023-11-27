@@ -31,13 +31,14 @@ class ArtistasApiController extends ApiController{
          
          $body = $this->getData();
 
+         $idArtista = $body-> idArtista;
          $nombreArtista = $body->nombreArtista;
          $nacionalidad= $body->nacionalidad;
          $edad = $body->edad;
 
 
-        $id =  $this->model-> insertArtista($nombreArtista,$nacionalidad,$edad);
-        $this->view->response('El artista fue agregado con el '.$id.' existosamente',201);
+        $id =  $this->model-> insertArtista($idArtista,$nombreArtista,$nacionalidad,$edad);
+        $this->view->response('El artista fue agregado con el '.$idArtista.' existosamente',201);
 
     }
 
@@ -53,9 +54,23 @@ class ArtistasApiController extends ApiController{
             $edad = $body->edad;
 
             $this->model->updateArtistas($nombreArtista,$nacionalidad,$edad,$id);
-            $this->view-> response('La cancion con el '.$id.' ha sido modificada', 200);
+            $this->view-> response('El artista con el '.$id.' ha sido modificada', 200);
         } else {
-            $this->view-> response('La cancion con el '.$id.' no existe', 404);
+            $this->view-> response('El artista con el '.$id.' no existe', 404);
         }
     }
+
+    function delete($params = []) {
+        $id = $params[':ID'];
+        $artista = $this->model-> getArtista($id);
+
+        if($artista) {
+            $this->model->delete($id);
+            $this->view-> response('El artista con el '.$id.' ha sido eliminado', 200);
+           
+        } else {
+            $this->view->response('El artista con id='.$id.' no existe.', 404);
+        }
+    }
+
 }

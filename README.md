@@ -7,7 +7,47 @@ Integrantes :
 Melina Theill
 Mail: meli.theill@gmail.com
 Dni : 40455464
-Tematica del TPE: Como tematica del TPE vamos a diseñar un sitio web dinamico de Reproduccion de Musica de distintos generos y artistas, para que abarque todas las edades y gustos particulares de cada usuario.
 
-Usuario : webadmin
-Contraseña: admin
+Documentación de los endpoints generados: 
+
+METHOD: GET  ENDPOINT:
+
+ http://localhost/Web2tpe/web2TPE-API/api/artistas?sort=idArtista&order=desc
+
+ Devuelve el arreglo de canciones ordenado por alguno de los campos de la base de dato que se pase por parametro get y puede ser descendente  o ascendente.
+
+ METHOD: GET  ENDPOINT:
+
+ http://localhost/Web2tpe/web2TPE-API/api/artistas
+
+ Devuelve el arreglo con todas los de artistas
+
+ METHOD: GET  ENDPOINT:
+
+ http://localhost/Web2tpe/web2TPE-API/api/canciones
+
+ Devuelve el arreglo con todas los de canciones, vinculandolas con los artistas y albums correspondientes
+
+ METHOD: GET  ENDPOINT:
+
+ http://localhost/Web2tpe/web2TPE-API/api/canciones/(idCancion)
+
+ Devuelve la cancion que corresponde, de acuerdo al id asignado en el endpoint
+
+ METHOD: PUT  ENDPOINT:
+
+ http://localhost/Web2tpe/web2TPE-API/api/artistas/(idArtista)
+
+ Modifica los atributos nombre, nacionalidad y edad de un artista seleciono por su id.
+
+ METHOD: POST  ENDPOINT:
+
+ http://localhost/Web2tpe/web2TPE-API/api/artistas/
+
+ Crea un artista nuevo artista
+
+ METHOD: DELETE  ENDPOINT:
+
+ http://localhost/Web2tpe/web2TPE-API/api/artistas/(IdArtista)
+
+ Elimina al artista  de acuerdo a al id pasado en el endpoint.

@@ -11,6 +11,8 @@ $router->addRoute('canciones/:ID', 'GET', 'CancionesApiController', 'getCancione
 $router->addRoute('artistas', 'GET', 'ArtistasApiController', 'get');
 $router->addRoute('artistas', 'POST', 'ArtistasApiController', 'create');
 $router->addRoute('artistas/:ID', 'PUT', 'ArtistasApiController', 'update');
+$router->addRoute('artistas/:ID', 'DELETE', 'ArtistasApiController', 'delete');
+
 
 
 
