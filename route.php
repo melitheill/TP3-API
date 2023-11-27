@@ -10,6 +10,7 @@ $router->addRoute('canciones', 'GET', 'CancionesApiController', 'getCanciones');
 $router->addRoute('canciones/:ID', 'GET', 'CancionesApiController', 'getCanciones');
 $router->addRoute('artistas', 'GET', 'ArtistasApiController', 'get');
 $router->addRoute('artistas', 'POST', 'ArtistasApiController', 'create');
+$router->addRoute('artistas/:ID', 'PUT', 'ArtistasApiController', 'update');
 
 
 

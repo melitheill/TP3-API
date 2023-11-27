@@ -12,9 +12,19 @@ class ArtistasApiController extends ApiController{
         $this->model = new ArtistaModel () ;
         
         }
-    public function get(){
+    public function get($params =[]){
+        if (!empty($_GET['sort'])&& !empty ($_GET['order'])){
+           $sort = $_GET['sort'];
+           $order = $_GET['order'];
+
+           $artistas = $this-> model-> getArtistasOrder($sort,$order);
+           return $this->view-> response($artistas,200);
+        
+        }
         $artistas = $this-> model-> getArtistas();
         return $this->view-> response($artistas,200);
+        
+
     }
 
     public function create($params = []){
@@ -29,5 +39,23 @@ class ArtistasApiController extends ApiController{
         $id =  $this->model-> insertArtista($nombreArtista,$nacionalidad,$edad);
         $this->view->response('El artista fue agregado con el '.$id.' existosamente',201);
 
+    }
+
+    public function update ($params =[]){
+        $id = $params[':ID'];
+        $cancion = $this->model-> getArtista($id);
+
+        if($cancion){
+            $body = $this->getData();
+
+            $nombreArtista = $body->nombreArtista;
+            $nacionalidad= $body->nacionalidad;
+            $edad = $body->edad;
+
+            $this->model->updateArtistas($nombreArtista,$nacionalidad,$edad,$id);
+            $this->view-> response('La cancion con el '.$id.' ha sido modificada', 200);
+        } else {
+            $this->view-> response('La cancion con el '.$id.' no existe', 404);
+        }
     }
 }
