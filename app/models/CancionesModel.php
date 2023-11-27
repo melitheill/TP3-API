@@ -16,6 +16,14 @@
         $canciones = $query->fetchAll(PDO::FETCH_OBJ);
         return $canciones;
     }
+
+    public function getCancion($id){
+        $query = $this->db->prepare('SELECT * FROM artista INNER JOIN cancion AS cancion ON
+        artista.idArtista =  cancion.idArtista INNER JOIN album AS album on album.idAlbum = cancion.idAlbum WHERE  idCancion = ?' ); 
+        $query->execute([$id]);
+        $cancion = $query->fetch(PDO::FETCH_OBJ);
+        return $cancion;
+    }
      
     
     
