@@ -21,8 +21,16 @@ class ArtistasApiController extends ApiController{
            return $this->view-> response($artistas,200);
         
         }
-        $artistas = $this-> model-> getArtistas();
-        return $this->view-> response($artistas,200);
+
+         else if (isset($_GET['nacionalidad'])){
+            $filtroNacionalidad = $_GET['nacionalidad'];
+            if ($filtroNacionalidad == 'Puerto Rico'){
+            $artistas = $this-> model-> getArtistaByNacionalidad($filtroNacionalidad);
+            return $this->view-> response($artistas,200);}
+         }
+         else{ $artistas = $this-> model-> getArtistas();
+            return $this->view-> response($artistas,200);}
+       
         
 
     }

@@ -30,6 +30,13 @@ class ArtistaModel{
         $artistas = $query->fetchAll(PDO::FETCH_OBJ);
         return $artistas;
     }
+
+    public function getArtistaByNacionalidad($nacionalidad){
+        $query = $this->db->prepare('SELECT * FROM artista WHERE nacionalidad = ? ');
+        $query->execute([$nacionalidad]);
+        $artistas = $query->fetchAll(PDO::FETCH_OBJ);
+        return $artistas;
+    }
         
 
     public function updateArtistas($nombreArtista,$nacionalidad,$edad,$id) {
